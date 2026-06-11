@@ -1,9 +1,9 @@
-"""Tests for the b3ov3nor PIR device handler."""
-
-import pytest
+"""Tests for the b3ov3nor PIR device."""
 
 from tests import create_device
-from tests.integration_helpers.binary_sensor import get_binary_sensor_default_definitions
+from tests.integration_helpers.binary_sensor import (
+    get_binary_sensor_default_definitions,
+)
 from tests.integration_helpers.sensor import get_sensor_default_definitions
 from tuya_device_handlers.registry import QuirksRegistry
 
@@ -27,7 +27,9 @@ def test_b3ov3nor_pir_wrapper(filled_quirks_registry: QuirksRegistry) -> None:
     assert wrapper.read_device_status(device) is False
 
 
-def test_b3ov3nor_battery_wrapper(filled_quirks_registry: QuirksRegistry) -> None:
+def test_b3ov3nor_battery_wrapper(
+    filled_quirks_registry: QuirksRegistry,
+) -> None:
     """測試電池電量感測器 Wrapper 能否正確讀取並解析狀態。"""
     device = create_device("pir_b3ov3nor.json")
     filled_quirks_registry.initialise_device_quirk(device)
